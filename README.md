@@ -23,6 +23,10 @@ Open a posting on LinkedIn, Indeed, Greenhouse, Lever, Workday, Glassdoor and mo
 
 ## See it
 
+![Demo: badge opens on a strong fit, then a posting with hard gates is disqualified](docs/img/demo.gif)
+
+[Watch the 18-second video](docs/img/demo.mp4)
+
 | A strong fit | Hard gates firing |
 |---|---|
 | ![Strong fit: 78, HIGH, with matched qualifications](docs/img/strong-fit.png) | ![Hard gates: financial-services requirement, cert cap, commute, 10+ years](docs/img/hard-gates.png) |
