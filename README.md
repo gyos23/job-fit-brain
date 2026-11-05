@@ -1,8 +1,36 @@
+<div align="center">
+
 # Job Fit Overlay
 
-Score any job posting against **your** profile and rules, in the browser and in Claude, with one shared "brain".
+**Stop reading job posts. Know in seconds if they fit.**
 
-Open a posting on LinkedIn, Indeed, Greenhouse, Lever, Workday and more. A badge appears with a tier (HIGH, MID, LOW, SKIP), a 0-100 match score, the rules that fired, and a one-click "Feed to Claude" for a full second opinion. Paste the same posting into Claude chat or Claude Code and you get the same hard gates and the same rubric, because they all read the same files.
+A browser badge that scores any job posting against *your* rules, plus a Claude second opinion that uses the exact same brain.
+
+![License: MIT](https://img.shields.io/badge/license-MIT-blue) ![Chrome and Firefox](https://img.shields.io/badge/browsers-Chrome%20%7C%20Firefox%20%7C%20Zen-informational) ![macOS](https://img.shields.io/badge/installer-macOS-lightgrey) ![No API key](https://img.shields.io/badge/API%20key-not%20needed-success)
+
+</div>
+
+Open a posting on LinkedIn, Indeed, Greenhouse, Lever, Workday, Glassdoor and more. A badge appears with a tier (**HIGH / MID / LOW / SKIP**), a 0-100 match score, and the exact rules that fired: hard excludes, years caps, commute, gaps. Click **Feed to Claude** for a full second opinion. Paste the same posting into Claude chat or Claude Code and you get the same rubric, because every place reads the same files.
+
+```
+            ~/.job-fit-brain/   (you write it once)
+         profile.md · rules.json · rubric.md
+                      │
+   ┌──────────────┬───┴──────────┬────────────────┐
+ Browser badge   Claude button   Claude Code      Claude chat
+ (instant)       (local CLI)     (skill + CLI)    (skill zip)
+```
+
+**Quick start**
+
+```bash
+git clone https://github.com/gyos23/job-fit-overlay.git
+cd job-fit-overlay && ./setup.sh
+```
+
+Then follow [Setup](#setup-macos-about-10-minutes). The starter brain is an example: you replace it with your own profile and rules, and Claude can interview you to do it.
+
+---
 
 ## How you get the same score everywhere
 
@@ -31,7 +59,7 @@ You need: Chrome or Zen/Firefox, Node 18+, Python 3, and the [Claude Code CLI](h
 
 **1. Get the code**
 ```bash
-git clone <this repo> job-fit-overlay && cd job-fit-overlay
+git clone https://github.com/gyos23/job-fit-overlay.git && cd job-fit-overlay
 ```
 
 **2. Create your brain**
@@ -41,7 +69,7 @@ git clone <this repo> job-fit-overlay && cd job-fit-overlay
 This copies `brain-template/` to `~/.job-fit-brain/`, builds the extension, registers the Claude host, links the skill into Claude Code, and prints a check. The template is an example for a senior project manager; **it is not you yet**. Fill in your own:
 
 ```bash
-cd ~/.job-fit-brain && claude "Interview me about my job search, then rewrite profile.md, rules.json and rubric.md for me. Follow docs/BRAIN.md in ~/path/to/job-fit-overlay. Keep the rules.json structure."
+cd ~/.job-fit-brain && claude "Interview me about my job search, then rewrite profile.md, rules.json and rubric.md for me. Follow docs/BRAIN.md in the cloned repo. Keep the rules.json structure."
 ```
 Then run `./build.sh` in the repo to recompile and re-test. Details: [docs/BRAIN.md](docs/BRAIN.md).
 
