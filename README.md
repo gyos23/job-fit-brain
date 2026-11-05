@@ -6,7 +6,7 @@
 
 A browser badge that scores any job posting against *your* rules, plus a Claude second opinion that uses the exact same brain.
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue) ![Chrome and Firefox](https://img.shields.io/badge/browsers-Chrome%20%7C%20Firefox%20%7C%20Zen-informational) ![macOS](https://img.shields.io/badge/installer-macOS-lightgrey) ![No API key](https://img.shields.io/badge/API%20key-not%20needed-success)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue) ![Chrome and Firefox](https://img.shields.io/badge/browsers-Chrome%20%7C%20Firefox%20%7C%20Zen-informational) ![macOS](https://img.shields.io/badge/installer-macOS-lightgrey) ![No API key](https://img.shields.io/badge/API%20key-not%20needed-success) [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-%E2%98%95-FFDD00)](https://buymeacoffee.com/dorianliriano)
 
 </div>
 
@@ -24,8 +24,8 @@ Open a posting on LinkedIn, Indeed, Greenhouse, Lever, Workday, Glassdoor and mo
 **Quick start**
 
 ```bash
-git clone https://github.com/gyos23/job-fit-overlay.git
-cd job-fit-overlay && ./setup.sh
+git clone https://github.com/gyos23/job-fit-brain.git
+cd job-fit-brain && ./setup.sh
 ```
 
 Then follow [Setup](#setup-macos-about-10-minutes). The starter brain is an example: you replace it with your own profile and rules, and Claude can interview you to do it.
@@ -59,7 +59,7 @@ You need: Chrome or Zen/Firefox, Node 18+, Python 3, and the [Claude Code CLI](h
 
 **1. Get the code**
 ```bash
-git clone https://github.com/gyos23/job-fit-overlay.git && cd job-fit-overlay
+git clone https://github.com/gyos23/job-fit-brain.git && cd job-fit-overlay
 ```
 
 **2. Create your brain**
@@ -113,3 +113,7 @@ It signs `clasp` in to your Google account, deploys a small web app bound to tha
 ## Layout
 
 `engine.js` triage engine (all personal data comes from the brain) · `content.js`, `overlay.css` page overlay · `popup.*` toolbar popup · `host/` native messaging host for Claude · `skill/` the Claude skill · `brain-template/` starter brain · `apps-script/` optional sheet logger · `tests/` run by `./build.sh`.
+
+## Support
+
+If this saves you time, you can [buy me a coffee](https://buymeacoffee.com/dorianliriano). Issues and pull requests are welcome.
