@@ -1,0 +1,11 @@
+.DS_Store
+*.zip
+*.xpi
+__pycache__/
+*.pyc
+# generated from your brain by sync-rules.js
+/rules.js
+/rules.json
+# personal calibration data, never published
+private/
+dist/

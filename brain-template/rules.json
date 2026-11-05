@@ -1,0 +1,289 @@
+{
+  "_note": "EXAMPLE brain: every rule, keyword and gap below is a placeholder for an imaginary senior project manager. Replace them with your own (docs/BRAIN.md). 'rules' are hard gates shared with the Claude skill; 'categories', 'adjustments', 'waivers', 'tiers' drive the instant browser triage only.",
+  "preferred_words": "preferred|desirable|advantage|nice to have|ideally|a plus|beneficial",
+  "rules": [
+    {
+      "id": "fs_required",
+      "effect": "AUTO-LOW (standing rule: financial-sector requirement)",
+      "downgrade_if_preferred": "info: FS experience preferred, not required - note in Notes",
+      "pattern": "(financial services|financial sector|banking|insurance|life assurance|fintech|asset management|capital markets)[^.\\n]{0,90}(experience|background|knowledge)|(experience|background)[^.\\n]{0,60}(financial services|financial sector|banking|insurance|life assurance|asset management|capital markets)"
+    },
+    {
+      "id": "pmo_experience",
+      "effect": "SKIP (standing rule: roles requiring PMO build/run experience)",
+      "pattern": "(set ?up|build|establish|run|lead|head)\\w*\\s+(a |the |an )?(enterprise )?PMO|PMO (experience|lead|head|manager)"
+    },
+    {
+      "id": "construction",
+      "effect": "HARD EXCLUDE (construction/civil PM)",
+      "pattern": "construction|site management|civil engineering|main contractor|\\bNEC[34]?\\b|\\bFIDIC\\b|fibre (build|rollout)|M&E"
+    },
+    {
+      "id": "language",
+      "effect": "CAP LOW (language requirement)",
+      "pattern": "(fluent|native|proficien\\w+|business level)[^.\\n]{0,40}\\b(German|French|Dutch|Spanish|Italian|Irish|Danish|Swedish|Polish|Portuguese|Norwegian|Finnish)\\b|\\b(German|French|Dutch|Italian|Danish|Swedish|Polish|Portuguese|Norwegian|Finnish)\\b[^.\\n]{0,30}(speaker|speaking|language skills)"
+    },
+    {
+      "id": "seniority_title",
+      "effect": "CAP LOW (Director/Head-of seniority)",
+      "pattern": "\\b(Director|Head of|Vice President|VP of|Chief)\\b"
+    },
+    {
+      "id": "us_work_auth",
+      "effect": "CAP LOW (US work authorisation)",
+      "pattern": "(authori[sz]ed|eligible) to work in the (US|U\\.S\\.|United States)|US citizen|green card|work authori[sz]ation in the US"
+    },
+    {
+      "id": "technical_must_have",
+      "effect": "CAP LOW if a stated must-have (infrastructure/cyber/engineering/pharma)",
+      "pattern": "\\b(CCNA|CCNP|network engineer\\w*|data ?cent(er|re)s?|cyber ?security|penetration test\\w*|commissioning|FAT/SAT|GMP|SCADA|\\bPLC\\b|DORA|financial crime)\\b"
+    },
+    {
+      "id": "platform_cert",
+      "effect": "CAP MID (certification/platform asked)",
+      "pattern": "\\b(ITIL ?v?4?|ServiceNow|SAP|Oracle|Salesforce|Dynamics 365|PRINCE2)\\b"
+    },
+    {
+      "id": "onsite_commute",
+      "effect": "CHECK COMMUTE (your home area, ~90 min max; Dublin/Cork/Belfast on-site counts as over)",
+      "pattern": "(on-?site|in the office|office-based|office attendance|\\d+ days|\ud83d\udccd|Location:?)[^.\\n]{0,80}\\b(Dublin|Cork|Belfast|Meath|Clonee|Kildare|Wicklow)\\b|\\b(Dublin|Cork|Belfast|Meath|Clonee|Kildare|Wicklow)\\b[^.\\n]{0,80}(on-?site|in the office|office-based|office attendance|\\d+ days)"
+    },
+    {
+      "id": "relocation",
+      "effect": "CHECK (relocation abroad = exclude; you are not relocating)",
+      "pattern": "relocat\\w+"
+    }
+  ],
+  "years": {
+    "cap_low_at": 10,
+    "cap_mid_from": 8
+  },
+  "profile": {
+    "name": "Alex Example, PMP",
+    "shortName": "Alex",
+    "targetTitle": "Senior Project Manager / Delivery Manager",
+    "location": "Galway, Ireland",
+    "commuteLimitMinutes": 90,
+    "workAuth": "EU citizen",
+    "yearsPM": "8 years PM, 12 years in enterprise IT",
+    "salaryFloorPermanent": "EUR 70k",
+    "salaryFloorContract": "EUR 450/day",
+    "relocation": "No (will not relocate abroad)"
+  },
+  "work_mode_default": "Hybrid (assumed)",
+  "tiers": {
+    "high_from": 70,
+    "mid_from": 45
+  },
+  "categories": {
+    "domain": {
+      "label": "Domain proof",
+      "max": 30,
+      "items": [
+        {
+          "id": "software_delivery",
+          "label": "Digital Transformation & Tech Delivery",
+          "points": 8,
+          "pattern": "\\b(digital transformation projects?|digital solutions?|implement digital solutions|software projects?|delivering software|software delivery|application delivery|tech projects?|release,?\\s*UAT|go-live|handover|adopt corporate strategies.*technologies)\\b"
+        },
+        {
+          "id": "data_decision_support",
+          "label": "Data & AI Decision Support / Analytics",
+          "points": 7,
+          "pattern": "\\b(data and AI|AI-enabled|decision-making|delivery data|data-driven|reporting and risk|forecasting|analytics|dashboard)\\b"
+        },
+        {
+          "id": "saas_onboarding",
+          "label": "Enterprise SaaS / Platform Evaluation",
+          "points": 7,
+          "pattern": "\\b(enterprise SaaS|vendor evaluation|platform evaluation|platform rollout|onboarding platform|software implementation|vendor selection)\\b"
+        },
+        {
+          "id": "supplier_vendor",
+          "label": "Supplier & Vendor Coordination / SOW",
+          "points": 6,
+          "pattern": "\\b(supplier coordination|third-party suppliers?|vendor contracts?|vendor management|milestone invoicing|SOW commitments?)\\b"
+        },
+        {
+          "id": "cloud_migration",
+          "label": "Cloud / AWS Migration",
+          "points": 6,
+          "pattern": "\\b(AWS|cloud migration|cloud transformation|cloud adoption|infrastructure migration)\\b"
+        }
+      ]
+    },
+    "methods": {
+      "label": "Methods & tools",
+      "max": 20,
+      "items": [
+        {
+          "id": "pmp_governance",
+          "label": "PMP / Governance / Risk Logs",
+          "points": 5,
+          "pattern": "\\b(PMP|project governance|risk management|managing the risk|risk and issue|RAID|steering committee|MBR|QBR|change[- ]control)\\b"
+        },
+        {
+          "id": "agile_waterfall",
+          "label": "Hybrid Waterfall / Agile / SAFe",
+          "points": 5,
+          "pattern": "\\b(hybrid|Agile|Waterfall|Scrum|SAFe|sprint|product owner|WBS|critical path|milestones?)\\b"
+        },
+        {
+          "id": "change_mgmt",
+          "label": "Change Management / Communication",
+          "points": 4,
+          "pattern": "\\b(change management|ADKAR|Prosci|business readiness|user adoption|stakeholder communication|stakeholder engagement|key stakeholders)\\b"
+        },
+        {
+          "id": "six_sigma",
+          "label": "Continuous Improvement / Six Sigma",
+          "points": 3,
+          "pattern": "\\b(Six Sigma|process improvement|continuous improvement|lean|workflow optimization|blameless reviews?|improve and change existing methods)\\b"
+        },
+        {
+          "id": "project_tools",
+          "label": "Jira / MS Project / Confluence / Excel",
+          "points": 3,
+          "pattern": "\\b(Jira|Smartsheet|Confluence|monday\\.com|MS Project|Excel|MS Office|Microsoft Office)\\b"
+        }
+      ]
+    },
+    "scope": {
+      "label": "Scope & seniority",
+      "max": 20,
+      "items": [
+        {
+          "id": "title_match",
+          "label": "Project / Delivery / Transformation Title Alignment",
+          "points": 12,
+          "pattern": "\\b(Senior Project Manager|Delivery Manager|Project Manager|Delivery Lead|Implementation Manager|Program Manager|Programme Manager|Digital Transformation (Officer|Manager|Lead)|Change (Management )?(Sr\\.? )?Manager)\\b"
+        },
+        {
+          "id": "vendor_procurement",
+          "label": "Scope, SOW, Budget & Invoicing",
+          "points": 8,
+          "pattern": "\\b(vendor management|procurement|RFP|SOW|budget|CAPEX|contract negotiation|stakeholder management|scope and change|milestone invoicing)\\b"
+        }
+      ]
+    },
+    "portfolio": {
+      "label": "Portfolio fit",
+      "max": 15,
+      "items": [
+        {
+          "id": "tech_delivery",
+          "label": "Software & Digital Delivery Scope",
+          "points": 8,
+          "pattern": "\\b(digital transformation|software projects?|customer and internal projects?|digital solutions|software delivery|tech delivery|IT transformation|system replacement)\\b"
+        },
+        {
+          "id": "complex_ops",
+          "label": "Cross-functional Pods / Operations Scope",
+          "points": 4,
+          "pattern": "\\b(cross-functional|matrix organization|matrix teams|operational change|enterprise-wide|across \\w+ pods|pods|departments and levels|members of various departments|interdependencies across the project)\\b"
+        },
+        {
+          "id": "multi_project_portfolio",
+          "label": "Portfolio & Multi-Initiative Governance",
+          "points": 5,
+          "pattern": "\\b(portfolio of projects|portfolio of programs|multiple initiatives|portfolio dashboard)\\b"
+        }
+      ]
+    }
+  },
+  "gap_base": 15,
+  "gap_per_capped_flag": 5,
+  "adjustments": [
+    {
+      "id": "over_levelled",
+      "name": "Over-levelled for Mid-level Role",
+      "category": "scope",
+      "points": -4,
+      "text": "\\b(Mid-level|2\\+?\\s*years?)\\b",
+      "unlessTitle": "\\bSenior\\b",
+      "flag": true,
+      "effect": "INFO (-4 pts Scope): Over-levelled for mid-level (2+ yrs asked, reports to Sr PM)",
+      "evidence": "Minimum Experience: Mid-level / 2+ years",
+      "ask": {
+        "label": "Mid-level title/rate acceptable?",
+        "yes": "Accept (+4)",
+        "no": "Over-levelled (-4)",
+        "description": "You are a Senior PM (12+ yrs enterprise); posting asks 2+ yrs.",
+        "category": "scope"
+      }
+    },
+    {
+      "id": "officer_scope",
+      "category": "scope",
+      "points": -2,
+      "title": "\\b(Officer|Coordinator)\\b",
+      "skipIf": "over_levelled"
+    },
+    {
+      "id": "gap_pi_planning",
+      "name": "No PI-Planning Experience",
+      "category": "gaps",
+      "points": -5,
+      "text": "\\b(PI commitments?|PI planning|Program Increment)\\b",
+      "flag": true,
+      "effect": "GAP (-5 pts): Missing SAFe / PI planning ceremony experience",
+      "evidence": "Requires planning against contracted milestones or PI commitments",
+      "ask": {
+        "label": "Do you have PI-planning ceremony proof?",
+        "yes": "Yes (+5)",
+        "no": "No (-5)",
+        "description": "Role asks for planning against contracted milestones or PI commitments.",
+        "category": "gaps"
+      }
+    },
+    {
+      "id": "gap_officer_title",
+      "name": "Title Step-down (Officer vs PM)",
+      "category": "gaps",
+      "points": -2,
+      "title": "\\b(Officer|Coordinator)\\b",
+      "flag": true,
+      "effect": "GAP (-2 pts): Officer title is a step down from Senior PM",
+      "ask": {
+        "label": "Officer title & implementer scope acceptable?",
+        "yes": "Accept (+2)",
+        "no": "Step-down (-2)",
+        "description": "Officer title is a hands-on implementer step-down from Senior PM.",
+        "category": "scope"
+      }
+    },
+    {
+      "id": "est_working_hours",
+      "name": "EST Working Hours (2pm - 10pm Irish Time)",
+      "category": "gaps",
+      "points": 0,
+      "text": "\\b(EST|Eastern Standard Time|Eastern Time)\\b",
+      "flag": true,
+      "effect": "INFO: Remote on EST hours (2pm-10pm GMT)",
+      "evidence": "Role operates on US Eastern Standard Time",
+      "ask": {
+        "label": "Willing to work US EST hours (2pm-10pm GMT)?",
+        "yes": "Accept EST (0)",
+        "no": "Decline / Disqualify",
+        "default": "yes",
+        "noExcludes": true,
+        "description": "Role operates on US Eastern Standard Time (afternoon/evening in Ireland).",
+        "category": "logistics",
+        "id": "est_hours_willing"
+      }
+    }
+  ],
+  "commute_ask": {
+    "label": "Is Dublin/Cork on-site commute acceptable?",
+    "keep": "Commute Flagged (0)",
+    "exclude": "Disqualify",
+    "description_from": "evidence"
+  },
+  "waivers": [
+    {
+      "rule": "platform_cert",
+      "match": "\\bPRINCE2\\b",
+      "waive_if_text": "\\bPMP\\b"
+    }
+  ]
+}
