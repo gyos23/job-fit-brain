@@ -21,6 +21,16 @@ Open a posting on LinkedIn, Indeed, Greenhouse, Lever, Workday, Glassdoor and mo
  (instant)       (local CLI)     (skill + CLI)    (skill zip)
 ```
 
+## See it
+
+| A strong fit | Hard gates firing |
+|---|---|
+| ![Strong fit: 78, HIGH, with matched qualifications](docs/img/strong-fit.png) | ![Hard gates: financial-services requirement, cert cap, commute, 10+ years](docs/img/hard-gates.png) |
+
+Demo postings are invented, scored with the bundled example brain. The badge sits quietly in the corner until you open it:
+
+![Collapsed badge](docs/img/badge.png)
+
 **Quick start**
 
 ```bash
