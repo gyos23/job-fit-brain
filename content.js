@@ -470,6 +470,13 @@
           const cv = response.data;
           if (currentResult.triageScore === undefined) {
             currentResult.triageScore = currentResult.matchScore;
+            currentResult.triageTier = currentResult.tier;
+            chrome.runtime.sendMessage({ action: 'log_pair', record: {
+              date: new Date().toISOString(), title: currentMetadata.title, company: currentMetadata.company,
+              url: window.location.href, text: currentCleanText,
+              badge: { matchScore: currentResult.matchScore, tier: currentResult.tier },
+              claude: cv
+            } });
           }
           cv.contextMissing = response.contextMissing || [];
           currentResult.claudeVerdict = cv;

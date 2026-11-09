@@ -196,6 +196,13 @@ def main():
                 send_message({"ok": True, "url": cfg.get("url", ""), "token": cfg.get("token", ""), "sheetUrl": cfg.get("sheetUrl", "")})
             except Exception:
                 send_message({"ok": False, "error": f"No tracker config at {cfg_path}"})
+        elif action == "log_pair":
+            # Feeds calibrate.js: (posting, Claude verdict) pairs, kept on this machine only.
+            d = os.path.join(HOME, ".job-fit-overlay")
+            os.makedirs(d, mode=0o700, exist_ok=True)
+            with open(os.path.join(d, "calibration.jsonl"), "a", encoding="utf-8") as f:
+                f.write(json.dumps(msg.get("record", {})) + "\n")
+            send_message({"ok": True})
         elif action == "score_job":
             send_message(evaluate_with_claude(msg.get("prompt", "")))
         else:

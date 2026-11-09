@@ -118,6 +118,15 @@ It signs `clasp` in to your Google account, deploys a small web app bound to tha
 - `echo "<posting text>" | node cli.js --title "Senior PM"` gives the browser triage from the shell.
 - Environment: `JOB_FIT_BRAIN` moves the brain folder; `JOB_FIT_CLAUDE` points at the `claude` binary if it is somewhere unusual.
 
+## Reconcile the badge with Claude
+
+Every time you press Feed to Claude, the posting and Claude's verdict are saved to `~/.job-fit-overlay/calibration.jsonl` on your machine. After a handful:
+
+```bash
+node calibrate.js
+```
+It replays those postings through your current rules and prints tier agreement, the average gap per scoring part, and the worst misses with what Claude credited that the badge did not. Add the missed terms to `categories` in your `rules.json`, run `./build.sh`, and run it again to watch the gap close. The badge will stay a bit more conservative than Claude; the aim is the same tier, not the same number.
+
 ## Limits
 
 - The installer is macOS only (native messaging paths). The scoring code is portable.

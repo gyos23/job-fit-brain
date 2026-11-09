@@ -67,6 +67,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true; // async sendResponse
   }
 
+  if (request.action === 'log_pair') {
+    chrome.runtime.sendNativeMessage(NATIVE_HOST, { action: 'log_pair', record: request.record }, () => void chrome.runtime.lastError);
+    return false;
+  }
+
   if (request.action === 'ask_claude') {
     chrome.runtime.sendNativeMessage(
       NATIVE_HOST,
