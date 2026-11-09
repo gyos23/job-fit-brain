@@ -89,7 +89,7 @@ Then run `./build.sh` in the repo to recompile and re-test. Details: [docs/BRAIN
 
 **3. Load the extension**
 - Chrome: `chrome://extensions`, turn on Developer mode, Load unpacked, pick this folder.
-- Zen/Firefox: `about:debugging#/runtime/this-firefox`, Load Temporary Add-on, pick `manifest.json`.
+- Zen/Firefox: run `./build.sh`, then `about:debugging#/runtime/this-firefox`, Load Temporary Add-on, pick `dist/firefox/manifest.json`. (Chrome and Firefox need different background keys, so the build writes a Firefox copy.)
 
 If Chrome shows an extension ID other than `jbljfmamepnilgemekjfbmjchdepaceo`, run `host/install-host.sh <that-id>` and reload the extension.
 

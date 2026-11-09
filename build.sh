@@ -24,23 +24,14 @@ echo "Running engine tests..."
 node tests/test-engine.js
 node tests/test-tracker.js
 
-# Build zip / xpi package
+# Chrome rejects background.scripts in MV3 and Firefox rejects background.service_worker, so ship one manifest each.
 echo "Packaging extension..."
-PACKAGE_NAME="job-fit-overlay.zip"
-rm -f "$PACKAGE_NAME" job-fit-overlay.xpi
-zip -q -r "$PACKAGE_NAME" \
-  manifest.json \
-  rules.json \
-  rules.js \
-  engine.js \
-  content.js \
-  overlay.css \
-  popup.html \
-  popup.js \
-  background.js \
-  icons \
-  -x "*.DS_Store"
+FILES="rules.json rules.js engine.js content.js overlay.css popup.html popup.js background.js icons"
+rm -rf dist/firefox job-fit-overlay.zip job-fit-overlay.xpi
+mkdir -p dist/firefox
+cp -RL $FILES dist/firefox/
+node -e "const m=require('./manifest.json');delete m.key;m.background={scripts:['background.js']};require('fs').writeFileSync('dist/firefox/manifest.json',JSON.stringify(m,null,2))"
+zip -q -r job-fit-overlay.zip manifest.json $FILES -x "*.DS_Store"
+(cd dist/firefox && zip -q -r ../../job-fit-overlay.xpi . -x "*.DS_Store")
 
-cp "$PACKAGE_NAME" job-fit-overlay.xpi
-
-echo "✓ Build complete: $PACKAGE_NAME and job-fit-overlay.xpi created."
+echo "✓ Build complete: job-fit-overlay.zip (Chrome), job-fit-overlay.xpi and dist/firefox/ (Firefox/Zen)."
