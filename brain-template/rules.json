@@ -156,7 +156,7 @@
           "id": "title_match",
           "label": "Project / Delivery / Transformation Title Alignment",
           "points": 12,
-          "pattern": "\\b(Senior Project Manager|Delivery Manager|Project Manager|Delivery Lead|Implementation Manager|Program Manager|Programme Manager|Digital Transformation (Officer|Manager|Lead)|Change (Management )?(Sr\\.? )?Manager)\\b"
+          "pattern": "\\b(Senior Project Manager|Delivery Manager|Project Manager|Delivery Lead|Implementation Manager|Program Manager|Program(me)? Lead|Program(me)? Director|Programme Manager|Digital Transformation (Officer|Manager|Lead)|Change (Management )?(Sr\\.? )?Manager)\\b"
         },
         {
           "id": "vendor_procurement",

@@ -283,10 +283,10 @@
     let claudeBtnLabel = '🚀 Feed to Claude';
     let claudeBtnClass = 'jfo-btn-green';
 
-    if (r.tier === 'SKIP' || r.tier === 'AUTO-LOW' || r.tier === 'EXCLUDE' || r.matchScore < 50) {
+    if (r.tier === 'SKIP' || r.tier === 'AUTO-LOW' || r.tier === 'LOW') {
       claudeBtnLabel = '⚠️ Feed to Claude (Are you sure?)';
       claudeBtnClass = 'jfo-btn-red';
-    } else if (r.tier === 'MID' || (r.matchScore >= 50 && r.matchScore < 70)) {
+    } else if (r.tier === 'MID') {
       claudeBtnLabel = '🤔 Feed to Claude (2nd Opinion)';
       claudeBtnClass = 'jfo-btn-amber';
     }
